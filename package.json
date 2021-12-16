@@ -1,0 +1,18 @@
+{
+  "name": "ghop_aitor_alvarez",
+  "version": "1.0.0",
+  "description": "Ghop Reader & TPV",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app"
+  },
+  "author": "Ghop | Aitor Alvarez",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "axios": "^0.24.0",
+    "cron": "^1.8.2",
+    "dotenv": "^10.0.0",
+    "mariadb": "^2.5.5"
+  }
+}
