@@ -15,24 +15,24 @@ const job = new CronJob(
         /* If there is a task running, exit */
         if (isRunning) return
 
-        /* If not, set "isRunning" to true to wait for the process to finish */
+        /* If not, set "isRunning" to true in order to wait for the process to finish */
         isRunning = true
         /* Listen for RFID changes and add them to the database if necessary */
         readerController.listen()
         .then(reading => {
-        /* Create a request in the database before send it to the TPV */
+        /* Create a request in the database before sending it to the TPV */
             if (reading) return tpvController.createRequest(reading)
         })
         .then(request => {
-        /* Send the request to the TPV and wait for the answer */
+        /* Send the request to the TPV and wait for its answer */
             if (request) return tpvController.sendRequest(request)
         })
         .then(result => {
          /* If everything is OK, confirm the request in the database */
-            if (result?.status == 200) return tpvController.confirmRequest(result.data) //Assuming the POST response contains exactly the same as being sent
+            if (result?.status == 200) return tpvController.confirmRequest(result.data) //Assuming the POST response contains exactly the same data that has been sent 
         })
         .then(() => {
-         /* Set "isRunning" to false in order to follow repeating the job */
+         /* Set "isRunning" to false in order to continue repeating the job */
             isRunning = false
         })
         .catch(error => {
