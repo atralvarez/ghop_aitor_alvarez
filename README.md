@@ -1,1 +1,1 @@
-# ghop_aitor_alvarez
+# Ghop - Aitor Álvarez
